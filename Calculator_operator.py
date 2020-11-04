@@ -11,8 +11,6 @@ class Calculator(object):
     balance = 0
     year = 0
     
-    def __init__(self, balance): 
-        self.balance = balance 
 
 #which adds interest to the balance  
     def add_interest_yearly(self):
@@ -21,15 +19,15 @@ class Calculator(object):
         self.year = eval(input('How many years are you planning to invest? '))
         for i in range (self.year):
             self.deposit_amount += int(self.deposit_amount * (self.interest_rate/100))
-        print('Your investment has grown to',self.balance)
+        print('Your investment has grown to',self.deposit_amount)
         
     def add_interest_monthly(self):
-        self.deposit_amount = eval(input('How much would you like to invest per month? '))
+        self.deposit_amount = eval(input('How much would you like to invest per month? ')) * 12
         self.interest_rate = eval(input('What is the compound interest rate? ___% '))
         self.year = eval(input('How many years are you planning to invest? '))
         for i in range (self.year):
-            self.deposit_amount*52 += int(self.deposit_amount * (self.interest_rate/100))
-        print('Your investment has grown to',self.balance)
+            self.deposit_amount += int(self.deposit_amount * (self.interest_rate/100))
+        print('Your investment has grown to',self.deposit_amount)
         
     def operator_menu(self):
          print('1 to invest annually')
@@ -38,18 +36,24 @@ class Calculator(object):
     def process_operation(self):
         Calculator().operator_menu()
         func = input('Choose an operation. Here is a menu: ')
-        if func not in ['1', '2']:
-            items = map(float, input('Please write 1 or 2'))
+#        if func not in ['1', '2']:
+#            print('Please try again')
+#            items = map(float, input('Please write 1 or 2'))
         
         if func in ['1']:
-            print('Total of all numbers in the set is: ', Calculator().add_interest_monthly())
+            Calculator().add_interest_yearly()
         if func in ['2']:
-            print('Results of subtracting of all numbers in the set is: ', Calculator().add_interest_yearly())            
+            Calculator().add_interest_monthly()         
         
-first = Calculator(3000)
+    def process(self):
+        ask_again = ''
+        while ask_again != 'y':
+            Calculator().process_operation()
+            ask_again = input('Would you like to exit the calculator (y/n)? ')
 
-
-first.add_interest()
+if __name__ == '__main__':
+    Calculator().process()
+    
 
 
 
