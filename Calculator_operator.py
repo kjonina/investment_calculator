@@ -54,6 +54,11 @@ class Calculator(object):
 if __name__ == '__main__':
     Calculator().process()
     
+## ISSUES
+# fix add_interest_monthly
+    
+
+    
 
 
 
